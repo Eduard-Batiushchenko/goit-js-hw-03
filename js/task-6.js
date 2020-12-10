@@ -7,12 +7,12 @@ const products = [
 
 const calculateTotalPrice = function (allProdcuts, productName) {
   let result = 0;
-  for (let product of allProdcuts) {
+  for (const product of allProdcuts) {
     if (product.name === productName) {
-      result = product.quantity * product.price;
-      return result;
+      result = product.price * product.quantity;
     }
   }
+  return `Общая стоимость ${productName}ов: ${result}`;
 };
 
 /*
