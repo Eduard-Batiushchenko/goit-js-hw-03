@@ -1,12 +1,14 @@
 const findBestEmployee = function (employees) {
-  let key = Object.entries(employees);
-  let maxValue = key[0];
-  for (let i = 1; i < key.length; i += 1) {
-    if (maxValue < key[i]) {
-      maxValue = key[i];
+  const entries = Object.entries(employees);
+  let bestWorkload = entries[0][1];
+  let bestEmployee = entries[0][0];
+  for (let i = 1; i < entries.length; i += 1) {
+    if (bestWorkload < entries[i][1]) {
+      bestWorkload = entries[i][1];
+      bestEmployee = entries[i][0];
     }
   }
-  return `${maxValue[0]}: ${maxValue[1]}`;
+  return `${bestEmployee}: ${bestWorkload}`;
 };
 
 /*
