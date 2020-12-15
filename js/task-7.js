@@ -10,7 +10,7 @@
 /*
  * Каждая транзакция это объект со свойствами: id, type и amount
  */
-
+let id = 0;
 const account = {
   // Текущий баланс счета
   balance: 0,
@@ -23,7 +23,8 @@ const account = {
    * Принимает сумму и тип транзакции.
    */
   createTransaction(amount, type) {
-    const transaction = { amount, type, id: this.transactions.length };
+    id += 1;
+    const transaction = { amount, type, id };
     return transaction;
   },
 
@@ -34,9 +35,9 @@ const account = {
    * после чего добавляет его в историю транзакций
    */
   deposit(amount) {
-    this.createTransaction(amount, 'deposit');
+    let transaction = this.createTransaction(amount, 'deposit');
     this.balance += amount;
-    this.transactions.push(this.createTransaction(amount, 'deposit'));
+    this.transactions.push(transaction);
     return this.transactions;
   },
 
@@ -53,9 +54,9 @@ const account = {
     if (this.balance < amount) {
       return `Не возможно снять ${amount}, не достаточно средств на счету`;
     } else {
-      this.createTransaction(amount, 'withdraw');
+      let transaction = this.createTransaction(amount, 'withdraw');
       this.balance -= amount;
-      this.transactions.push(this.createTransaction(amount, 'withdraw'));
+      this.transactions.push(transaction);
       return this.transactions;
     }
   },
@@ -99,5 +100,5 @@ console.log(account.deposit(2000));
 console.log(account.withdraw(1500));
 console.log(account.withdraw(1500));
 console.log(account.getBalance());
-console.log(account.getTransactionDetails(0));
+console.log(account.getTransactionDetails(1));
 console.log(account.getTransactionTotal('deposit'));

@@ -7,8 +7,8 @@ const products = [
 
 const getAllPropValues = function (arr, prop) {
   let result = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    const entries = Object.entries(arr[i]);
+  for (const array of arr) {
+    const entries = Object.entries(array);
     for (const entry of entries) {
       const key = entry[0];
       const value = entry[1];
